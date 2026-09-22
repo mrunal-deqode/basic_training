@@ -1,0 +1,53 @@
+Day 1 - Git Advanced
+
+1.)Branch :- Movable Pointer Pointing to commit.
+Commands :- a.)git branch b.)git branch <name>
+
+2.)checkout :- Switch from one branch to another.
+Commands :- a.)git checkout <bname> b.)git checkout -b <bname>
+
+3.)Cherry-Pick :- Take changes from one specific commit to other branch as a new commit.
+Commands :- a.)git cherry-pick <chash>
+
+4.)Tag :- Fixed refrence/label pointing to a specific commit.
+Command :- a.)git tag <name>
+
+5.)Merge :- Combine the history/changes of one branch into another branch.
+Command :- a.)git merge <bname>
+
+6.)Rebase :- Moves your branch base to another commit and replays your branch commits on top of it.
+Command :- a.)git rebase <bname>
+
+7.)Conflict :- Conflicts occurs when git cannot automatically usderstand wat changes should be combined.
+
+8.)Squash :- Combines multiple commits into one commit.
+
+9.)Reword :- Changes commit's message.
+
+10.)Edit :- tell rebase to stop at particular commit so you can modify it.
+~N means go back N generation. ^N means select parent.
+
+11.)Submodules :-Git repo included inside another git repo.
+Command :- a.)git submodule add <RURL> b.)git submodule update --init --recursive c.)git clone --recurse-submodules <RURL> d.)git submodule update --remote
+
+12.)Branching Strategy :- Teams rule for creating using naming and merging branches.
+
+13.)Feature branch :- Always usefull, because it isolates your work from main. Allowing parellel development, testing, review, and safe merging.
+
+NOTE :- As a team member, my responsiblity is to work on my branch, keep my branch updated with the latest main,write clean and tested code, commit meaningfull changes, push my branch, create a PR, participate in code review, resolve conflicts when required.
+
+ONE LINER :-
+Branch    → movable pointer to a commit
+Checkout  → switch branch
+Merge     → combine branches
+Rebase    → replay commits on a new base
+Conflict  → Git can't automatically combine changes
+Cherry-pick → apply a specific commit's changes elsewhere
+Tag       → fixed label/reference to a commit
+Squash    → combine commits
+Reword    → change commit message
+Edit      → stop and modify a commit
+~         → go backward N generations
+^         → select a parent
+Submodule → Git repo inside another Git repo
+Feature branch → isolated development branch
