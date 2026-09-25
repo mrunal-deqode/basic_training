@@ -77,6 +77,8 @@ const game = {
     score: 0,
     lives: 3,
     currentQuestion: 0,
+    timer: null,
+    timeLeft: 15,
 
     start() {
         console.log(this);
@@ -103,9 +105,11 @@ const game = {
                 game.checkAnswer(index);
             };
         });
+        this.startTimer();
     },
 
     checkAnswer(selectedIndex) {
+        this.stopTimer();
         const question = this.questions[this.currentQuestion];
 
         if (selectedIndex === question.correctAnswerIndex) {
@@ -142,6 +146,7 @@ const game = {
     },
 
     gameOver() {
+        this.stopTimer();
         document.getElementById("game-screen").style.display = "none";
         document.getElementById("end-screen").style.display = "block";
 
@@ -150,6 +155,7 @@ const game = {
     },
 
     win() {
+        this.stopTimer();
         document.getElementById("game-screen").style.display = "none";
         document.getElementById("end-screen").style.display = "block";
 
@@ -169,5 +175,27 @@ const game = {
         document.getElementById("game-screen").style.display = "block";
 
         this.loadQuestion();
+    },
+
+    startTimer() {
+        this.timeLeft = 15;
+
+        document.getElementById("timer").textContent = this.timeLeft;
+
+        this.timer = setInterval(() => {
+            this.timeLeft--;
+
+            document.getElementById("timer").textContent = this.timeLeft;
+
+            console.log("Time:", this.timeLeft);
+            if (this.timeLeft === 0) {
+                clearInterval(this.timer);
+                this.checkAnswer(-1);
+            }
+        }, 1000);
+    },
+
+    stopTimer() {
+        clearInterval(this.timer);
     }
 };
