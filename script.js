@@ -61,10 +61,15 @@ const questions = [
     }
 ];
 const startButton = document.getElementById("start-btn");
+const playAgainButton = document.getElementById("play-again-btn");
 
 startButton.addEventListener("click", function () {
     game.start();
 
+});
+
+playAgainButton.addEventListener("click", function () {
+    game.reset();
 });
 
 const game = {
@@ -115,6 +120,11 @@ const game = {
 
             console.log("Wrong!");
             console.log("Lives:", this.lives);
+
+            if (this.lives === 0) {
+                this.gameOver();
+                return;
+            }
         }
 
         this.nextQuestion();
@@ -122,6 +132,42 @@ const game = {
 
     nextQuestion() {
         this.currentQuestion++;
+
+        if (this.currentQuestion >= this.questions.length) {
+            this.win();
+            return;
+        }
+
+        this.loadQuestion();
+    },
+
+    gameOver() {
+        document.getElementById("game-screen").style.display = "none";
+        document.getElementById("end-screen").style.display = "block";
+
+        document.getElementById("end-message").textContent = "Game Over";
+        document.getElementById("final-score").textContent = this.score;
+    },
+
+    win() {
+        document.getElementById("game-screen").style.display = "none";
+        document.getElementById("end-screen").style.display = "block";
+
+        document.getElementById("end-message").textContent = "You Win!";
+        document.getElementById("final-score").textContent = this.score;
+    },
+
+    reset() {
+        this.score = 0;
+        this.lives = 3;
+        this.currentQuestion = 0;
+
+        document.getElementById("score").textContent = this.score;
+        document.getElementById("lives").textContent = this.lives;
+
+        document.getElementById("end-screen").style.display = "none";
+        document.getElementById("game-screen").style.display = "block";
+
         this.loadQuestion();
     }
 };
