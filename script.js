@@ -60,11 +60,42 @@ const questions = [
         correctAnswerIndex: 0
     }
 ];
-
 const startButton = document.getElementById("start-btn");
 
 startButton.addEventListener("click", function () {
-    document.getElementById("start-screen").style.display = "none";
-    document.getElementById("game-screen").style.display = "block";
+    game.start();
+
 });
 
+const game = {
+    questions: questions,
+    score: 0,
+    lives: 3,
+    currentQuestion: 0,
+
+    start() {
+        console.log(this);
+        console.log(this.score);
+
+        document.getElementById("start-screen").style.display = "none";
+        document.getElementById("game-screen").style.display = "block";
+
+        this.loadQuestion();
+    },
+
+    loadQuestion() {
+        const question = this.questions[this.currentQuestion];
+
+        console.log(question);
+        document.getElementById("question").textContent = question.question;
+        const answerButtons = document.querySelectorAll(".answer-btn");
+        question.options.forEach(function (option, index) {
+            answerButtons[index].textContent = option;
+        });
+        answerButtons.forEach(function (button, index) {
+            button.onclick = function () {
+                console.log("Selected option:", index);
+            };
+        });
+    }
+};
