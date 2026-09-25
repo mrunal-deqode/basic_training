@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>User Management</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>User Management System</h1>
+
+        <section>
+            <h2>Register</h2>
+
+            <form id="registerForm">
+
+                <input type="email" id="email" placeholder="Email">
+
+                <input type="text" id="username" placeholder="Username">
+
+                <input type="password" id="password" placeholder="Password">
+
+                <input type="text" id="firstName" placeholder="First Name">
+
+                <input type="text" id="lastName" placeholder="Last Name">
+
+                <select id="gender">
+                    <option value="">Select Gender</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="other">Other</option>
+                </select>
+
+                <select id="role">
+                    <option value="">Select Role</option>
+                    <option value="admin">Admin</option>
+                    <option value="user">User</option>
+                </select>
+
+                <button type="submit">Register</button>
+
+            </form>
+        </section>
+
+
+        <section>
+            <h2>Login</h2>
+
+            <form id="loginForm">
+
+                <input type="text" id="loginUsername" placeholder="Username">
+
+                <input type="password" id="loginPassword" placeholder="Password">
+
+                <button type="submit">Login</button>
+
+            </form>
+        </section>
+
+        <button type="button" id="logoutButton">Logout</button>
+
+
+        <section>
+            <h2>Users</h2>
+
+            <ul id="userList"></ul>
+
+        </section>
+
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
