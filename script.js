@@ -95,7 +95,33 @@ const game = {
         answerButtons.forEach(function (button, index) {
             button.onclick = function () {
                 console.log("Selected option:", index);
+                game.checkAnswer(index);
             };
         });
+    },
+
+    checkAnswer(selectedIndex) {
+        const question = this.questions[this.currentQuestion];
+
+        if (selectedIndex === question.correctAnswerIndex) {
+            this.score++;
+            document.getElementById("score").textContent = this.score;
+            console.log("Correct!");
+            console.log("Score:", this.score);
+        } else {
+            this.lives--;
+
+            document.getElementById("lives").textContent = this.lives;
+
+            console.log("Wrong!");
+            console.log("Lives:", this.lives);
+        }
+
+        this.nextQuestion();
+    },
+
+    nextQuestion() {
+        this.currentQuestion++;
+        this.loadQuestion();
     }
 };
