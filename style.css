@@ -45,3 +45,29 @@ main {
     font-size: 16px;
     cursor: pointer;
 }
+
+#game-screen {
+    text-align: center;
+}
+
+#game-info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+
+#question-area {
+    margin-bottom: 30px;
+}
+
+#answer-buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.answer-btn {
+    padding: 15px;
+    font-size: 16px;
+    cursor: pointer;
+}
