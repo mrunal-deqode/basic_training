@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ninja Trivia Arena</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <main>
+        <section id="start-screen">
+
+            <h1>Ninja Trivia Arena</h1>
+            <p>Answer the questions correctly and defeat all the enemies!</p>
+            <button id="start-btn">Start Game</button>
+
+        </section>
+
+        <section id="game-screen">
+            <div id="game-info">
+                <p>Score: <span id="score">0</span></p>
+                <p>Lives: <span id="lives">3</span></p>
+                <p>Time: <span id="timer">15</span></p>
+            </div>
+
+            <div id="question-area">
+                <h2 id="question">Question will appear here</h2>
+            </div>
+
+            <div id="answer-buttons">
+                <button class="answer-btn">Option 1</button>
+                <button class="answer-btn">Option 2</button>
+                <button class="answer-btn">Option 3</button>
+                <button class="answer-btn">Option 4</button>
+            </div>
+        </section>
+        <section id="end-screen">
+            <h2 id="end-message">Game Over</h2>
+            <p>Final Score: <span id="final-score">0</span></p>
+            <button id="play-again-btn">Play Again</button>
+        </section>
+    </main>
+    <script src="script.js"></script>
+</body>
+
+</html>
