@@ -77,6 +77,8 @@ const game = {
     score: 0,
     lives: 3,
     currentQuestion: 0,
+    currentQuestionIndex: null,
+    usedQuestions: [],
     timer: null,
     timeLeft: 15,
 
@@ -91,26 +93,41 @@ const game = {
     },
 
     loadQuestion() {
-        const question = this.questions[this.currentQuestion];
+        try {
+            let randomIndex;
 
-        console.log(question);
-        document.getElementById("question").textContent = question.question;
-        const answerButtons = document.querySelectorAll(".answer-btn");
-        question.options.forEach(function (option, index) {
-            answerButtons[index].textContent = option;
-        });
-        answerButtons.forEach(function (button, index) {
-            button.onclick = function () {
-                console.log("Selected option:", index);
-                game.checkAnswer(index);
-            };
-        });
-        this.startTimer();
+            do {
+                randomIndex = Math.floor(Math.random() * this.questions.length);
+            } while (this.usedQuestions.includes(randomIndex));
+
+            this.usedQuestions.push(randomIndex);
+            this.currentQuestionIndex = randomIndex;
+
+            const question = this.questions[randomIndex];
+
+            console.log(question);
+            document.getElementById("question").textContent = question.question;
+            const answerButtons = document.querySelectorAll(".answer-btn");
+            question.options.forEach(function (option, index) {
+                answerButtons[index].textContent = option;
+            });
+            answerButtons.forEach(function (button, index) {
+                button.onclick = function () {
+                    console.log("Selected option:", index);
+                    game.checkAnswer(index);
+                };
+            });
+            this.startTimer();
+        } catch (error) {
+            console.error(error);
+            document.getElementById("question").textContent =
+                "Sorry, something went wrong while loading the question.";
+        }
     },
 
     checkAnswer(selectedIndex) {
         this.stopTimer();
-        const question = this.questions[this.currentQuestion];
+        const question = this.questions[this.currentQuestionIndex];
 
         if (selectedIndex === question.correctAnswerIndex) {
             this.score++;
@@ -167,6 +184,7 @@ const game = {
         this.score = 0;
         this.lives = 3;
         this.currentQuestion = 0;
+        this.usedQuestions = [];
 
         document.getElementById("score").textContent = this.score;
         document.getElementById("lives").textContent = this.lives;
