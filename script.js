@@ -82,6 +82,7 @@ const game = {
     usedQuestions: [],
     timer: null,
     timeLeft: 15,
+    answerSelected: false,
 
     start() {
         console.log(this);
@@ -95,6 +96,7 @@ const game = {
 
     loadQuestion() {
         try {
+            this.answerSelected = false;
             if (!this.questions || this.questions.length === 0) {
                 throw new Error("No questions available.");
             }
@@ -127,11 +129,14 @@ const game = {
             question.options.forEach(function (option, index) {
                 answerButtons[index].textContent = option;
                 answerButtons[index].disabled = false;
+
+                answerButtons[index].classList.remove("correct");
+                answerButtons[index].classList.remove("wrong");
             });
             answerButtons.forEach(function (button, index) {
                 button.onclick = function () {
                     console.log("Selected option:", index);
-                    game.checkAnswer(index);
+                    game.checkAnswer(index, button);
                 };
             });
             this.startTimer();
@@ -149,19 +154,37 @@ const game = {
         }
     },
 
-    checkAnswer(selectedIndex) {
+    checkAnswer(selectedIndex, button) {
+        if (this.answerSelected) {
+            return;
+        }
+
+        this.answerSelected = true;
         this.stopTimer();
         const question = this.questions[this.currentQuestionIndex];
 
         if (selectedIndex === question.correctAnswerIndex) {
             this.score++;
+            button.classList.add("correct");
             document.getElementById("score").textContent = this.score;
             console.log("Correct!");
             console.log("Score:", this.score);
         } else {
             this.lives--;
+            const livesElement = document.getElementById("lives");
 
-            document.getElementById("lives").textContent = this.lives;
+            document.getElementById("lives").textContent = "❤️ ".repeat(this.lives).trim();
+
+            livesElement.classList.remove("lose-life");
+
+            void livesElement.offsetWidth;
+
+            livesElement.classList.add("lose-life");
+            // button.classList.add("wrong");
+            if (button) {
+                button.classList.add("wrong");
+            }
+            // document.getElementById("lives").textContent = this.lives;
 
             console.log("Wrong!");
             console.log("Lives:", this.lives);
@@ -172,7 +195,10 @@ const game = {
             }
         }
 
-        this.nextQuestion();
+        // this.nextQuestion();
+        setTimeout(() => {
+            this.nextQuestion();
+        }, 500);
     },
 
     nextQuestion() {
@@ -205,8 +231,10 @@ const game = {
     },
 
     reset() {
+        this.answerSelected = false;
         this.score = 0;
         this.lives = 3;
+        document.getElementById("lives").textContent = "❤️ ❤️ ❤️";
         this.currentQuestion = 0;
         this.usedQuestions = [];
 
@@ -221,12 +249,15 @@ const game = {
 
     startTimer() {
         this.timeLeft = 15;
+        document.getElementById("timer").classList.remove("warning");
 
         document.getElementById("timer").textContent = this.timeLeft;
 
         this.timer = setInterval(() => {
             this.timeLeft--;
-
+            if (this.timeLeft <= 5) {
+                document.getElementById("timer").classList.add("warning");
+            }
             document.getElementById("timer").textContent = this.timeLeft;
 
             console.log("Time:", this.timeLeft);
