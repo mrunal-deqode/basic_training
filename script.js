@@ -60,6 +60,7 @@ const questions = [
         correctAnswerIndex: 0
     }
 ];
+// const questions = [];
 const startButton = document.getElementById("start-btn");
 const playAgainButton = document.getElementById("play-again-btn");
 
@@ -94,6 +95,21 @@ const game = {
 
     loadQuestion() {
         try {
+            if (!this.questions || this.questions.length === 0) {
+                throw new Error("No questions available.");
+            }
+            const currentQuestion = this.questions.find(
+                question =>
+                    !question.question ||
+                    !Array.isArray(question.options) ||
+                    question.options.length !== 4 ||
+                    typeof question.correctAnswerIndex !== "number"
+            );
+
+            if (currentQuestion) {
+                throw new Error("Question data is malformed.");
+            }
+
             let randomIndex;
 
             do {
@@ -110,6 +126,7 @@ const game = {
             const answerButtons = document.querySelectorAll(".answer-btn");
             question.options.forEach(function (option, index) {
                 answerButtons[index].textContent = option;
+                answerButtons[index].disabled = false;
             });
             answerButtons.forEach(function (button, index) {
                 button.onclick = function () {
@@ -122,6 +139,13 @@ const game = {
             console.error(error);
             document.getElementById("question").textContent =
                 "Sorry, something went wrong while loading the question.";
+
+            const answerButtons = document.querySelectorAll(".answer-btn");
+
+            answerButtons.forEach(function (button) {
+                button.textContent = "";
+                button.disabled = true;
+            });
         }
     },
 
