@@ -217,7 +217,7 @@ const game = {
         document.getElementById("game-screen").style.display = "none";
         document.getElementById("end-screen").style.display = "block";
 
-        document.getElementById("end-message").textContent = "Game Over";
+        document.getElementById("end-message").textContent = "You Loose!";
         document.getElementById("final-score").textContent = this.score;
     },
 
@@ -239,7 +239,8 @@ const game = {
         this.usedQuestions = [];
 
         document.getElementById("score").textContent = this.score;
-        document.getElementById("lives").textContent = this.lives;
+        document.getElementById("lives").textContent =
+            "❤️ ".repeat(this.lives).trim();
 
         document.getElementById("end-screen").style.display = "none";
         document.getElementById("game-screen").style.display = "block";
