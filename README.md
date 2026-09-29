@@ -1,8 +1,8 @@
 # Python Programming Practice
 
-This document contains my preferred solutions and reasoning for each programming problem.
+This document contains my preferred solutions for each programming problem.
 For each question, I compared two possible approaches and selected the one I consider better based on readability, logic, portability, and understanding.
-**File Name** :- `Represent File name which is i prefer as a solution of a particular problem`
+*File Name* :- `Represent File name which is i prefer as a solution of a particular problem`
 ---
 
 ## Q1. Write a program to reverse a number.
