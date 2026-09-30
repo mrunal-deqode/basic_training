@@ -39,8 +39,6 @@ with (
         # print("Product :",product_name)
         # print("Cost :",cost_price)
         # print("Country :",country)
-        cost_price = float(row["Product-CostPrice"])
-        # print("cost_price", cost_price)
         tax = calculate_tax(cost_price)
         # print("tax", tax)
         final_price = calculate_final_price(cost_price, tax)
