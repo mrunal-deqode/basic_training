@@ -1,5 +1,28 @@
 import random
 
+questions = [
+    {
+        "question": "What keyword is used to define a function in Python?",
+        "answer": "def",
+    },
+    {
+        "question": "What data type is used to store True or False?",
+        "answer": "bool",
+    },
+    {
+        "question": "Which symbol is used for comments in Python?",
+        "answer": "#",
+    },
+    {
+        "question": "What function is used to display output in Python?",
+        "answer": "print",
+    },
+    {
+        "question": "Which keyword is used to create a class in Python?",
+        "answer": "class",
+    },
+]
+
 
 class QuizGame:
     """Manage the quiz game."""
@@ -65,29 +88,6 @@ class QuizGame:
         print(f"Marks obtained: {marks}")
         print("BYE!")
 
-
-questions = [
-    {
-        "question": "What keyword is used to define a function in Python?",
-        "answer": "def",
-    },
-    {
-        "question": "What data type is used to store True or False?",
-        "answer": "bool",
-    },
-    {
-        "question": "Which symbol is used for comments in Python?",
-        "answer": "#",
-    },
-    {
-        "question": "What function is used to display output in Python?",
-        "answer": "print",
-    },
-    {
-        "question": "Which keyword is used to create a class in Python?",
-        "answer": "class",
-    },
-]
 
 # question = random.choice(questions)
 
