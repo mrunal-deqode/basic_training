@@ -1,4 +1,3 @@
-from typing import Optional
 
 from pydantic import BaseModel
 
@@ -10,6 +9,6 @@ class Product(BaseModel):
 
 
 class ProductUpdate(BaseModel):
-    name: Optional[str] = None
-    price: Optional[float] = None
-    in_stock: Optional[bool] = None
+    name: str | None = None
+    price: float | None = None
+    in_stock: bool | None = None

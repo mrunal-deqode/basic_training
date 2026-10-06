@@ -1,6 +1,6 @@
 from fastapi import APIRouter, HTTPException, status
-from models.schemas import Product, ProductUpdate
 
+from models.schemas import Product, ProductUpdate
 
 router = APIRouter()
 
