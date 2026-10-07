@@ -1,0 +1,6 @@
+/.venv
+/__pycache__/
+*.pyc
+/models/__pycache__/
+/alembic/versions/__pycache__/
+/alembic/__pycache__/
