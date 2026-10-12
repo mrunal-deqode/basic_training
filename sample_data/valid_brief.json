@@ -1,0 +1,130 @@
+{
+    "title": "Clinic Appointment No-Show Report",
+    "sections": [
+        {
+            "number": 1,
+            "heading": "Business Scenario",
+            "content": {
+                "role": "Data analyst",
+                "domain": "Healthcare",
+                "problem": "A chain of city clinics loses revenue every month because patients miss appointments. The operations manager needs a report showing the no-show rate for each clinic."
+            }
+        },
+        {
+            "number": 2,
+            "heading": "Input Specification",
+            "content": {
+                "format": "CSV file with a header row",
+                "fields": {
+                    "appointment_id": "text, unique id",
+                    "clinic": "text, clinic name",
+                    "scheduled_date": "text, YYYY-MM-DD",
+                    "attended": "text, either yes or no"
+                }
+            }
+        },
+        {
+            "number": 3,
+            "heading": "Output Specification",
+            "content": {
+                "format": "CSV and JSON files",
+                "fields": {
+                    "clinic": "text, clinic name",
+                    "total_appointments": "integer",
+                    "no_shows": "integer",
+                    "no_show_rate": "number, percentage with 1 decimal"
+                },
+                "derivation": "no_show_rate = no_shows / total_appointments * 100"
+            }
+        },
+        {
+            "number": 4,
+            "heading": "Constraints & Assumptions",
+            "content": {
+                "assumptions": [
+                    "All dates use a single time zone.",
+                    "Each row is exactly one appointment.",
+                    "Rates are rounded to one decimal place."
+                ]
+            }
+        },
+        {
+            "number": 5,
+            "heading": "Core Task",
+            "content": {
+                "description": "Read the appointments, group them by clinic, count the no-shows and compute the no-show rate for each clinic.",
+                "steps": [
+                    "Read the CSV with the csv module using pathlib and a context manager (with open).",
+                    "Store counts in numeric variables and flags in boolean values.",
+                    "Clean each clinic name with string methods and slicing.",
+                    "Use arithmetic and comparison operators, and combine status flags with a bitwise OR.",
+                    "Use if/elif/else for decisions, a for loop over the rows and a while loop to ask again for a missing file path.",
+                    "Group rows with tuples, dictionaries and set operations, and build results with list, dictionary and nested comprehensions.",
+                    "Apply lambda, map(), filter() and reduce to the totals, and walk nested data with recursion.",
+                    "Print a summary line with an f-string and write the report files in JSON."
+                ]
+            }
+        },
+        {
+            "number": 6,
+            "heading": "Required Implementations",
+            "content": {
+                "function_based": "Plain functions with a default argument, keyword arguments, *args and **kwargs, split into modules inside a package and written to PEP 8.",
+                "class_based": "Classes with __init__, a classmethod and a staticmethod, inheritance with super(), and the dunder methods __str__, __repr__ and __eq__.",
+                "comparison": "The function version is shorter and easier to read; the class version groups data and behaviour together, which scales better when rules grow. Both produce the same report and use str.format for table rows. Generators with yield and iterator objects give lazy output, and a closure and a decorator add timing."
+            }
+        },
+        {
+            "number": 7,
+            "heading": "Error Handling Requirements",
+            "content": {
+                "failure_cases": [
+                    "Missing input file (custom exception, handled with try/except/else/finally)",
+                    "Malformed row in the CSV",
+                    "Invalid data type, such as text in a numeric field",
+                    "Empty input file",
+                    "Wrong date format"
+                ]
+            }
+        },
+        {
+            "number": 8,
+            "heading": "Testing Requirements",
+            "content": {
+                "happy_path": "Using unittest, a clean file gives one correct row per clinic.",
+                "edge_cases": [
+                    "A clinic with only one appointment",
+                    "A file with a header row only"
+                ],
+                "failure_cases": [
+                    "Missing file",
+                    "Malformed row",
+                    "Empty file"
+                ]
+            }
+        },
+        {
+            "number": 9,
+            "heading": "Stretch Goals",
+            "content": {
+                "goals": [
+                    "Check several input files in parallel with concurrent.futures ThreadPoolExecutor.",
+                    "Store each run in SQLite (sqlite3) as history, or fetch clinic names from an external API.",
+                    "Add type hints and docstrings to every function and class."
+                ]
+            }
+        },
+        {
+            "number": 10,
+            "heading": "Deliverable Checklist",
+            "content": {
+                "items": [
+                    "Code follows PEP 8",
+                    "Docstrings and type hints on everything",
+                    "Unit tests pass",
+                    "README explains how to run it and the project structure"
+                ]
+            }
+        }
+    ]
+}
