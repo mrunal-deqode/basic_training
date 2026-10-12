@@ -1,13 +1,41 @@
 """Function-based validator for project briefs."""
-
-from typing import Any
+from functools import reduce
+from typing import Any, Callable
 
 from src.exceptions import InvalidDataTypeError, MissingSectionError
-from src.utils import BLUEPRINT_RULES, EXPECTED_HEADINGS
+from src.utils import (
+    BLUEPRINT_RULES,
+    EXPECTED_HEADINGS,
+    MODULE_TOPICS,
+    check_brief_shape,
+)
 
 EXPECTED_SECTION_COUNT = len(EXPECTED_HEADINGS)
 
 LOWER_HEADINGS = [heading.lower() for heading in EXPECTED_HEADINGS]
+
+
+HEADING_OK = 1 << 0  
+FIELDS_OK = 1 << 1  
+TYPES_OK = 1 << 2  
+CONTENT_OK = 1 << 3  
+ALL_OK = HEADING_OK | FIELDS_OK | TYPES_OK | CONTENT_OK  
+
+
+CHECK_FLAGS = {
+    "heading": HEADING_OK,
+    "field": FIELDS_OK,
+    "type": TYPES_OK,
+    "item count": CONTENT_OK,
+    "blank values": CONTENT_OK,
+}
+
+FLAG_NAMES = {
+    HEADING_OK: "heading",
+    FIELDS_OK: "fields",
+    TYPES_OK: "types",
+    CONTENT_OK: "content",
+}
 
 
 def make_result(
@@ -254,3 +282,147 @@ def validate_fields(sections: list[Any]) -> list[dict[str, str]]:
         results.extend(check_section_fields(position, content))
 
     return results
+
+def merge_results(
+    *result_lists: list[dict[str, str]],
+) -> list[dict[str, str]]:
+    
+    merged = []
+    for result_list in result_lists:
+        merged.extend(result_list)
+    return merged
+
+
+def collect_text(value: Any) -> str:
+    
+    if isinstance(value, str):  
+        return value
+
+    if isinstance(value, dict):  
+        return " ".join(collect_text(inner) for inner in value.values())
+
+    if isinstance(value, list):  
+        return " ".join(collect_text(item) for item in value)
+
+    return ""  
+
+
+def make_keyword_finder(text: str) -> Callable[[list[str]], bool]:
+    
+
+    def found(keywords: list[str]) -> bool:
+        return any(keyword in text for keyword in keywords)
+
+    return found
+
+
+def coverage_message(topic: str, found: bool) -> str:
+    
+    if found:
+        return f"Topic '{topic}' is covered"
+    return f"Topic '{topic}' is not mentioned anywhere in the brief"
+
+
+def check_topic_coverage(sections: list[Any]) -> list[dict[str, str]]:
+    
+    contents = [section["content"] for section in sections]
+    text = collect_text(contents).lower()  
+    covers = make_keyword_finder(text)
+
+    outcomes = [
+        (number, topic, covers(keywords))
+        for number, topics in MODULE_TOPICS.items()
+        for topic, keywords in topics.items()
+    ]
+
+    return [
+        make_result(f"module {number}", "topic coverage", found,
+                    coverage_message(topic, found))
+        for number, topic, found in outcomes
+    ]
+
+
+def get_failures(
+    results: list[dict[str, str]], severity: str | None = None
+) -> list[dict[str, str]]:
+    failed = filter(lambda row: row["status"] == "FAIL", results)
+
+    if severity is not None:
+        failed = filter(lambda row: row["severity"] == severity, failed)
+
+    return list(failed) 
+
+
+def add_to_tally(tally: dict[str, int], row: dict[str, str]) -> dict[str, int]:
+    tally[row["status"]] = tally[row["status"]] + 1
+    return tally
+
+
+def tally_results(results: list[dict[str, str]]) -> dict[str, int]:
+    starting_tally = {"PASS": 0, "FAIL": 0}
+    return reduce(add_to_tally, results, starting_tally)
+
+
+def add_file_name(
+    results: list[dict[str, str]], file_name: str
+) -> list[dict[str, str]]:
+    return list(map(lambda row: {**row, "file": file_name}, results))
+
+
+def make_strict(results: list[dict[str, str]]) -> list[dict[str, str]]:
+    strict_results = []
+    for row in results:
+        if row["severity"] == "warning":
+            row = {**row, "severity": "error"}  
+        strict_results.append(row)
+    return strict_results
+
+
+def section_status_masks(results: list[dict[str, str]]) -> dict[str, int]:
+    masks = {}
+
+    for row in results:
+        label = row["section"]
+        if not label.startswith("section "):
+            continue  
+
+        mask = masks.get(label, ALL_OK)  
+
+        is_error = row["status"] == "FAIL" and row["severity"] == "error"
+        if is_error:
+            flag = CHECK_FLAGS.get(row["check"], 0)
+            mask = mask & ~flag  
+
+        masks[label] = mask
+
+    return masks
+
+
+def describe_mask(mask: int) -> list[str]:
+    return [name for flag, name in FLAG_NAMES.items() if not (mask & flag)]
+
+
+def validate_brief(
+    data: Any,
+    file_name: str = "brief",
+    strict: bool = False,
+    **options: Any,
+) -> list[dict[str, str]]:
+    check_brief_shape(data)  
+
+    unknown = set(options) - {"skip_coverage"}
+    if unknown:
+        raise TypeError(f"Unknown options: {', '.join(sorted(unknown))}")
+
+    sections = data["sections"]
+    parts = [validate_structure(sections), validate_fields(sections)]
+
+    if not options.get("skip_coverage", False):
+        parts.append(check_topic_coverage(sections))
+
+    results = merge_results(*parts)  
+
+    if strict:
+        results = make_strict(results)
+
+    return add_file_name(results, file_name)
