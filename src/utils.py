@@ -1,3 +1,7 @@
+"""Utilities for handling the fixed 10-section blueprint, the Module 1-5 topic
+checklist, and the functions that load and sanity-check a brief file.
+"""
+
 import json
 from pathlib import Path
 from typing import Any
@@ -9,6 +13,7 @@ from src.exceptions import (
     MissingFileError,
 )
 
+# ------------------The blueprint: the 10 required sections, in order.-------------------------------
 BLUEPRINT_RULES = {
     1: {
         "heading": "Business Scenario",
@@ -84,6 +89,7 @@ BLUEPRINT_RULES = {
 
 EXPECTED_HEADINGS = tuple(rule["heading"] for rule in BLUEPRINT_RULES.values())
 
+# -----------------The Module 1-5 curriculum checklist.-----------------------------
 MODULE_TOPICS = {
     1: {
         "variables and types": ["variable", "numeric", "boolean"],
@@ -129,6 +135,7 @@ MODULE_TOPICS = {
 
 
 def load_brief(file_path: str | Path) -> Any:
+    """Read a brief file and return JSON content. file_path contain path of json file."""
     path = Path(file_path)  
 
     if not path.is_file():
@@ -157,6 +164,7 @@ def load_brief(file_path: str | Path) -> Any:
 
 
 def check_brief_shape(data: Any) -> None:
+    """Check that loaded data has the basic structure of a brief."""
     if not isinstance(data, dict):
         raise InvalidDataTypeError("brief", "dict", data)
 
