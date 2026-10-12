@@ -1,6 +1,6 @@
 """Function-based validator for project briefs."""
 from functools import reduce
-from typing import Any, Callable
+from typing import Any, Callable, Iterator
 
 from src.exceptions import InvalidDataTypeError, MissingSectionError
 from src.utils import (
@@ -8,6 +8,8 @@ from src.utils import (
     EXPECTED_HEADINGS,
     MODULE_TOPICS,
     check_brief_shape,
+    logged,
+    timed,
 )
 
 EXPECTED_SECTION_COUNT = len(EXPECTED_HEADINGS)
@@ -133,9 +135,10 @@ def check_headings(sections: list[Any]) -> list[dict[str, str]]:
 
     return results
 
-
+@timed
+@logged
 def validate_structure(sections: list[Any]) -> list[dict[str, str]]:
-    
+    """Validate the brief's section count and headings."""
     results = []
     results.extend(check_section_count(sections))
     results.extend(check_headings(sections))
@@ -270,18 +273,18 @@ def check_section_fields(
     results.append(check_blank_values(label, content))
     return results
 
-
-def validate_fields(sections: list[Any]) -> list[dict[str, str]]:
-    
-    results = []
-
-    for position in BLUEPRINT_RULES:  
+def iter_field_results(sections: list[Any]) -> Iterator[dict[str, str]]:
+    for position in BLUEPRINT_RULES:
         if position > len(sections):
             continue  
         content = sections[position - 1]["content"]
-        results.extend(check_section_fields(position, content))
+        yield from check_section_fields(position, content)
 
-    return results
+
+@timed
+@logged
+def validate_fields(sections: list[Any]) -> list[dict[str, str]]:
+    return list(iter_field_results(sections))
 
 def merge_results(
     *result_lists: list[dict[str, str]],
@@ -323,6 +326,8 @@ def coverage_message(topic: str, found: bool) -> str:
     return f"Topic '{topic}' is not mentioned anywhere in the brief"
 
 
+@timed
+@logged
 def check_topic_coverage(sections: list[Any]) -> list[dict[str, str]]:
     
     contents = [section["content"] for section in sections]
@@ -426,3 +431,13 @@ def validate_brief(
         results = make_strict(results)
 
     return add_file_name(results, file_name)
+
+def iter_violations(
+    results: list[dict[str, str]], severity: str | None = None
+) -> Iterator[dict[str, str]]:
+    for row in results:
+        if row["status"] != "FAIL":
+            continue
+        if severity is not None and row["severity"] != severity:
+            continue
+        yield row

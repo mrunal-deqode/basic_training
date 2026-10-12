@@ -1,5 +1,5 @@
 """python3 main.py [input_file] [output_dir] [--impl function] [--strict]"""
-
+import logging
 import argparse
 import sys
 from pathlib import Path
@@ -7,7 +7,7 @@ from typing import Callable
 
 from src.exceptions import BriefCheckerError
 from src.report import format_failure_table, format_summary, write_reports
-from src.utils import load_brief
+from src.utils import load_brief, TIMINGS
 from src.validator import validate_brief
 
 EXIT_COMPLIANT = 0
@@ -23,6 +23,13 @@ IMPLEMENTATIONS: dict[str, Callable] = {
 
 PROMPT = "Enter the path to a brief JSON file (or q to quit): "
 
+
+def print_timings() -> None:
+    """Print how long each decorated validation step took."""
+    print()
+    print("Timings (this run):")
+    for name, seconds in TIMINGS.items():
+        print(f"  {name:<22} {seconds * 1000:8.3f} ms")
 
 def parse_arguments(argv: list[str] | None = None) -> argparse.Namespace:
     parser = argparse.ArgumentParser(
@@ -44,6 +51,10 @@ def parse_arguments(argv: list[str] | None = None) -> argparse.Namespace:
     parser.add_argument(
         "--strict", action="store_true",
         help="treat warnings (such as extra fields) as errors",
+    )
+    parser.add_argument(
+        "--verbose", action="store_true",
+        help="show debug logging and the time each step took",
     )
     return parser.parse_args(argv)
 
@@ -77,6 +88,7 @@ def run_check(
     output_dir: str,
     implementation: str = "function",
     strict: bool = False,
+    verbose: bool = False,
 ) -> int:
     name = Path(input_path).name
     validate = IMPLEMENTATIONS[implementation]
@@ -104,6 +116,9 @@ def run_check(
         print("Reports written:")
         print(f"  {csv_path}")
         print(f"  {json_path}")
+        
+        if verbose:
+            print_timings()
 
         if summary["verdict"] == "NON-COMPLIANT":
             return EXIT_NON_COMPLIANT
@@ -115,6 +130,12 @@ def run_check(
 def main(argv: list[str] | None = None) -> int:
     args = parse_arguments(argv)
 
+    if args.verbose:
+        logging.basicConfig(
+            level=logging.DEBUG,
+            format="%(levelname)s %(name)s: %(message)s",
+        )
+
     try:
         input_path = args.input_file
         if input_path is None:
@@ -123,7 +144,7 @@ def main(argv: list[str] | None = None) -> int:
             print("No input file given. Goodbye.")
             return EXIT_NO_INPUT
 
-        return run_check(input_path, args.output_dir, args.impl, args.strict)
+        return run_check(input_path, args.output_dir, args.impl, args.strict, args.verbose)
     except KeyboardInterrupt:  
         print("\nCancelled by the user.")
         return EXIT_CANCELLED

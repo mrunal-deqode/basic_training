@@ -2,9 +2,12 @@
 checklist, and the functions that load and sanity-check a brief file.
 """
 
+import functools
 import json
+import logging
+import time
 from pathlib import Path
-from typing import Any
+from typing import Any, Callable
 
 from src.exceptions import (
     EmptyInputError,
@@ -12,6 +15,10 @@ from src.exceptions import (
     MalformedRowError,
     MissingFileError,
 )
+
+logger = logging.getLogger("blueprint_checker")
+
+TIMINGS: dict[str, float] = {}
 
 # ------------------The blueprint: the 10 required sections, in order.-------------------------------
 BLUEPRINT_RULES = {
@@ -190,3 +197,29 @@ def check_brief_shape(data: Any) -> None:
 
         if not isinstance(entry["content"], dict):
             raise InvalidDataTypeError(f"content of {where}", "dict", entry["content"])
+        
+def timed(func: Callable[..., Any]) -> Callable[..., Any]:
+    """Decorator: record how long each call to func takes in TIMINGS."""
+
+    @functools.wraps(func)  
+    def wrapper(*args: Any, **kwargs: Any) -> Any:
+        start = time.perf_counter()
+        try:
+            return func(*args, **kwargs)
+        finally:
+            TIMINGS[func.__name__] = time.perf_counter() - start
+
+    return wrapper
+
+
+def logged(func: Callable[..., Any]) -> Callable[..., Any]:
+    """Decorator: log the start and end of a validation step."""
+
+    @functools.wraps(func)
+    def wrapper(*args: Any, **kwargs: Any) -> Any:
+        logger.debug("Starting %s", func.__name__)
+        result = func(*args, **kwargs)
+        logger.debug("Finished %s: %d rows", func.__name__, len(result))
+        return result
+
+    return wrapper

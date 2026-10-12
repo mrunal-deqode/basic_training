@@ -3,7 +3,7 @@
 import csv
 import json
 from pathlib import Path
-from typing import Any
+from typing import Any, Iterator
 
 CSV_COLUMNS = ["file", "section", "check", "status", "severity", "message"]
 
@@ -121,22 +121,29 @@ def format_summary(summary: dict[str, Any]) -> str:
     return "\n".join(lines)
 
 
+def iter_failure_lines(results: list[dict[str, str]]) -> Iterator[str]:
+    header_shown = False
+
+    for row in results:
+        if row["status"] != "FAIL":
+            continue
+
+        if not header_shown:
+            yield ROW_TEMPLATE.format(
+                section="SECTION", check="CHECK", severity="SEVERITY",
+                message="MESSAGE",
+            )
+            yield "-" * 70
+            header_shown = True
+
+        yield ROW_TEMPLATE.format(**row)
+
+    if not header_shown:
+        yield "No failed checks."
+
+
 def format_failure_table(results: list[dict[str, str]]) -> str:
-    failed_rows = [row for row in results if row["status"] == "FAIL"]
-
-    if not failed_rows:
-        return "No failed checks."
-
-    header = ROW_TEMPLATE.format(
-        section="SECTION", check="CHECK", severity="SEVERITY",
-        message="MESSAGE",
-    )
-    lines = [header, "-" * 70]
-
-    for row in failed_rows:
-        lines.append(ROW_TEMPLATE.format(**row))
-
-    return "\n".join(lines)
+    return "\n".join(iter_failure_lines(results))
 
 
 def write_reports(
