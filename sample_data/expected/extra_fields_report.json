@@ -1,0 +1,862 @@
+{
+  "summary": {
+    "file": "extra_fields.json",
+    "total_checks": 106,
+    "passed": 105,
+    "failed": 1,
+    "errors": 0,
+    "warnings": 1,
+    "score": 99.1,
+    "verdict": "COMPLIANT"
+  },
+  "results": [
+    {
+      "section": "brief",
+      "check": "section count",
+      "status": "PASS",
+      "severity": "info",
+      "message": "Brief has exactly 10 sections",
+      "file": "extra_fields.json"
+    },
+    {
+      "section": "section 1",
+      "check": "heading",
+      "status": "PASS",
+      "severity": "info",
+      "message": "Heading is correct: 'Business Scenario'",
+      "file": "extra_fields.json"
+    },
+    {
+      "section": "section 2",
+      "check": "heading",
+      "status": "PASS",
+      "severity": "info",
+      "message": "Heading is correct: 'Input Specification'",
+      "file": "extra_fields.json"
+    },
+    {
+      "section": "section 3",
+      "check": "heading",
+      "status": "PASS",
+      "severity": "info",
+      "message": "Heading is correct: 'Output Specification'",
+      "file": "extra_fields.json"
+    },
+    {
+      "section": "section 4",
+      "check": "heading",
+      "status": "PASS",
+      "severity": "info",
+      "message": "Heading is correct: 'Constraints & Assumptions'",
+      "file": "extra_fields.json"
+    },
+    {
+      "section": "section 5",
+      "check": "heading",
+      "status": "PASS",
+      "severity": "info",
+      "message": "Heading is correct: 'Core Task'",
+      "file": "extra_fields.json"
+    },
+    {
+      "section": "section 6",
+      "check": "heading",
+      "status": "PASS",
+      "severity": "info",
+      "message": "Heading is correct: 'Required Implementations'",
+      "file": "extra_fields.json"
+    },
+    {
+      "section": "section 7",
+      "check": "heading",
+      "status": "PASS",
+      "severity": "info",
+      "message": "Heading is correct: 'Error Handling Requirements'",
+      "file": "extra_fields.json"
+    },
+    {
+      "section": "section 8",
+      "check": "heading",
+      "status": "PASS",
+      "severity": "info",
+      "message": "Heading is correct: 'Testing Requirements'",
+      "file": "extra_fields.json"
+    },
+    {
+      "section": "section 9",
+      "check": "heading",
+      "status": "PASS",
+      "severity": "info",
+      "message": "Heading is correct: 'Stretch Goals'",
+      "file": "extra_fields.json"
+    },
+    {
+      "section": "section 10",
+      "check": "heading",
+      "status": "PASS",
+      "severity": "info",
+      "message": "Heading is correct: 'Deliverable Checklist'",
+      "file": "extra_fields.json"
+    },
+    {
+      "section": "section 1",
+      "check": "field",
+      "status": "PASS",
+      "severity": "info",
+      "message": "Field 'role' is present",
+      "file": "extra_fields.json"
+    },
+    {
+      "section": "section 1",
+      "check": "type",
+      "status": "PASS",
+      "severity": "info",
+      "message": "Field 'role' has type str",
+      "file": "extra_fields.json"
+    },
+    {
+      "section": "section 1",
+      "check": "field",
+      "status": "PASS",
+      "severity": "info",
+      "message": "Field 'domain' is present",
+      "file": "extra_fields.json"
+    },
+    {
+      "section": "section 1",
+      "check": "type",
+      "status": "PASS",
+      "severity": "info",
+      "message": "Field 'domain' has type str",
+      "file": "extra_fields.json"
+    },
+    {
+      "section": "section 1",
+      "check": "field",
+      "status": "PASS",
+      "severity": "info",
+      "message": "Field 'problem' is present",
+      "file": "extra_fields.json"
+    },
+    {
+      "section": "section 1",
+      "check": "type",
+      "status": "PASS",
+      "severity": "info",
+      "message": "Field 'problem' has type str",
+      "file": "extra_fields.json"
+    },
+    {
+      "section": "section 1",
+      "check": "extra fields",
+      "status": "FAIL",
+      "severity": "warning",
+      "message": "Unexpected extra fields: notes",
+      "file": "extra_fields.json"
+    },
+    {
+      "section": "section 1",
+      "check": "blank values",
+      "status": "PASS",
+      "severity": "info",
+      "message": "No blank values",
+      "file": "extra_fields.json"
+    },
+    {
+      "section": "section 2",
+      "check": "field",
+      "status": "PASS",
+      "severity": "info",
+      "message": "Field 'format' is present",
+      "file": "extra_fields.json"
+    },
+    {
+      "section": "section 2",
+      "check": "type",
+      "status": "PASS",
+      "severity": "info",
+      "message": "Field 'format' has type str",
+      "file": "extra_fields.json"
+    },
+    {
+      "section": "section 2",
+      "check": "field",
+      "status": "PASS",
+      "severity": "info",
+      "message": "Field 'fields' is present",
+      "file": "extra_fields.json"
+    },
+    {
+      "section": "section 2",
+      "check": "type",
+      "status": "PASS",
+      "severity": "info",
+      "message": "Field 'fields' has type dict",
+      "file": "extra_fields.json"
+    },
+    {
+      "section": "section 2",
+      "check": "extra fields",
+      "status": "PASS",
+      "severity": "info",
+      "message": "No unexpected fields",
+      "file": "extra_fields.json"
+    },
+    {
+      "section": "section 2",
+      "check": "blank values",
+      "status": "PASS",
+      "severity": "info",
+      "message": "No blank values",
+      "file": "extra_fields.json"
+    },
+    {
+      "section": "section 3",
+      "check": "field",
+      "status": "PASS",
+      "severity": "info",
+      "message": "Field 'format' is present",
+      "file": "extra_fields.json"
+    },
+    {
+      "section": "section 3",
+      "check": "type",
+      "status": "PASS",
+      "severity": "info",
+      "message": "Field 'format' has type str",
+      "file": "extra_fields.json"
+    },
+    {
+      "section": "section 3",
+      "check": "field",
+      "status": "PASS",
+      "severity": "info",
+      "message": "Field 'fields' is present",
+      "file": "extra_fields.json"
+    },
+    {
+      "section": "section 3",
+      "check": "type",
+      "status": "PASS",
+      "severity": "info",
+      "message": "Field 'fields' has type dict",
+      "file": "extra_fields.json"
+    },
+    {
+      "section": "section 3",
+      "check": "field",
+      "status": "PASS",
+      "severity": "info",
+      "message": "Field 'derivation' is present",
+      "file": "extra_fields.json"
+    },
+    {
+      "section": "section 3",
+      "check": "type",
+      "status": "PASS",
+      "severity": "info",
+      "message": "Field 'derivation' has type str",
+      "file": "extra_fields.json"
+    },
+    {
+      "section": "section 3",
+      "check": "extra fields",
+      "status": "PASS",
+      "severity": "info",
+      "message": "No unexpected fields",
+      "file": "extra_fields.json"
+    },
+    {
+      "section": "section 3",
+      "check": "blank values",
+      "status": "PASS",
+      "severity": "info",
+      "message": "No blank values",
+      "file": "extra_fields.json"
+    },
+    {
+      "section": "section 4",
+      "check": "field",
+      "status": "PASS",
+      "severity": "info",
+      "message": "Field 'assumptions' is present",
+      "file": "extra_fields.json"
+    },
+    {
+      "section": "section 4",
+      "check": "type",
+      "status": "PASS",
+      "severity": "info",
+      "message": "Field 'assumptions' has type list",
+      "file": "extra_fields.json"
+    },
+    {
+      "section": "section 4",
+      "check": "item count",
+      "status": "PASS",
+      "severity": "info",
+      "message": "Field 'assumptions' has 3 items",
+      "file": "extra_fields.json"
+    },
+    {
+      "section": "section 4",
+      "check": "extra fields",
+      "status": "PASS",
+      "severity": "info",
+      "message": "No unexpected fields",
+      "file": "extra_fields.json"
+    },
+    {
+      "section": "section 4",
+      "check": "blank values",
+      "status": "PASS",
+      "severity": "info",
+      "message": "No blank values",
+      "file": "extra_fields.json"
+    },
+    {
+      "section": "section 5",
+      "check": "field",
+      "status": "PASS",
+      "severity": "info",
+      "message": "Field 'description' is present",
+      "file": "extra_fields.json"
+    },
+    {
+      "section": "section 5",
+      "check": "type",
+      "status": "PASS",
+      "severity": "info",
+      "message": "Field 'description' has type str",
+      "file": "extra_fields.json"
+    },
+    {
+      "section": "section 5",
+      "check": "field",
+      "status": "PASS",
+      "severity": "info",
+      "message": "Field 'steps' is present",
+      "file": "extra_fields.json"
+    },
+    {
+      "section": "section 5",
+      "check": "type",
+      "status": "PASS",
+      "severity": "info",
+      "message": "Field 'steps' has type list",
+      "file": "extra_fields.json"
+    },
+    {
+      "section": "section 5",
+      "check": "item count",
+      "status": "PASS",
+      "severity": "info",
+      "message": "Field 'steps' has 8 items",
+      "file": "extra_fields.json"
+    },
+    {
+      "section": "section 5",
+      "check": "extra fields",
+      "status": "PASS",
+      "severity": "info",
+      "message": "No unexpected fields",
+      "file": "extra_fields.json"
+    },
+    {
+      "section": "section 5",
+      "check": "blank values",
+      "status": "PASS",
+      "severity": "info",
+      "message": "No blank values",
+      "file": "extra_fields.json"
+    },
+    {
+      "section": "section 6",
+      "check": "field",
+      "status": "PASS",
+      "severity": "info",
+      "message": "Field 'function_based' is present",
+      "file": "extra_fields.json"
+    },
+    {
+      "section": "section 6",
+      "check": "type",
+      "status": "PASS",
+      "severity": "info",
+      "message": "Field 'function_based' has type str",
+      "file": "extra_fields.json"
+    },
+    {
+      "section": "section 6",
+      "check": "field",
+      "status": "PASS",
+      "severity": "info",
+      "message": "Field 'class_based' is present",
+      "file": "extra_fields.json"
+    },
+    {
+      "section": "section 6",
+      "check": "type",
+      "status": "PASS",
+      "severity": "info",
+      "message": "Field 'class_based' has type str",
+      "file": "extra_fields.json"
+    },
+    {
+      "section": "section 6",
+      "check": "field",
+      "status": "PASS",
+      "severity": "info",
+      "message": "Field 'comparison' is present",
+      "file": "extra_fields.json"
+    },
+    {
+      "section": "section 6",
+      "check": "type",
+      "status": "PASS",
+      "severity": "info",
+      "message": "Field 'comparison' has type str",
+      "file": "extra_fields.json"
+    },
+    {
+      "section": "section 6",
+      "check": "extra fields",
+      "status": "PASS",
+      "severity": "info",
+      "message": "No unexpected fields",
+      "file": "extra_fields.json"
+    },
+    {
+      "section": "section 6",
+      "check": "blank values",
+      "status": "PASS",
+      "severity": "info",
+      "message": "No blank values",
+      "file": "extra_fields.json"
+    },
+    {
+      "section": "section 7",
+      "check": "field",
+      "status": "PASS",
+      "severity": "info",
+      "message": "Field 'failure_cases' is present",
+      "file": "extra_fields.json"
+    },
+    {
+      "section": "section 7",
+      "check": "type",
+      "status": "PASS",
+      "severity": "info",
+      "message": "Field 'failure_cases' has type list",
+      "file": "extra_fields.json"
+    },
+    {
+      "section": "section 7",
+      "check": "item count",
+      "status": "PASS",
+      "severity": "info",
+      "message": "Field 'failure_cases' has 5 items",
+      "file": "extra_fields.json"
+    },
+    {
+      "section": "section 7",
+      "check": "extra fields",
+      "status": "PASS",
+      "severity": "info",
+      "message": "No unexpected fields",
+      "file": "extra_fields.json"
+    },
+    {
+      "section": "section 7",
+      "check": "blank values",
+      "status": "PASS",
+      "severity": "info",
+      "message": "No blank values",
+      "file": "extra_fields.json"
+    },
+    {
+      "section": "section 8",
+      "check": "field",
+      "status": "PASS",
+      "severity": "info",
+      "message": "Field 'happy_path' is present",
+      "file": "extra_fields.json"
+    },
+    {
+      "section": "section 8",
+      "check": "type",
+      "status": "PASS",
+      "severity": "info",
+      "message": "Field 'happy_path' has type str",
+      "file": "extra_fields.json"
+    },
+    {
+      "section": "section 8",
+      "check": "field",
+      "status": "PASS",
+      "severity": "info",
+      "message": "Field 'edge_cases' is present",
+      "file": "extra_fields.json"
+    },
+    {
+      "section": "section 8",
+      "check": "type",
+      "status": "PASS",
+      "severity": "info",
+      "message": "Field 'edge_cases' has type list",
+      "file": "extra_fields.json"
+    },
+    {
+      "section": "section 8",
+      "check": "item count",
+      "status": "PASS",
+      "severity": "info",
+      "message": "Field 'edge_cases' has 2 items",
+      "file": "extra_fields.json"
+    },
+    {
+      "section": "section 8",
+      "check": "field",
+      "status": "PASS",
+      "severity": "info",
+      "message": "Field 'failure_cases' is present",
+      "file": "extra_fields.json"
+    },
+    {
+      "section": "section 8",
+      "check": "type",
+      "status": "PASS",
+      "severity": "info",
+      "message": "Field 'failure_cases' has type list",
+      "file": "extra_fields.json"
+    },
+    {
+      "section": "section 8",
+      "check": "item count",
+      "status": "PASS",
+      "severity": "info",
+      "message": "Field 'failure_cases' has 3 items",
+      "file": "extra_fields.json"
+    },
+    {
+      "section": "section 8",
+      "check": "extra fields",
+      "status": "PASS",
+      "severity": "info",
+      "message": "No unexpected fields",
+      "file": "extra_fields.json"
+    },
+    {
+      "section": "section 8",
+      "check": "blank values",
+      "status": "PASS",
+      "severity": "info",
+      "message": "No blank values",
+      "file": "extra_fields.json"
+    },
+    {
+      "section": "section 9",
+      "check": "field",
+      "status": "PASS",
+      "severity": "info",
+      "message": "Field 'goals' is present",
+      "file": "extra_fields.json"
+    },
+    {
+      "section": "section 9",
+      "check": "type",
+      "status": "PASS",
+      "severity": "info",
+      "message": "Field 'goals' has type list",
+      "file": "extra_fields.json"
+    },
+    {
+      "section": "section 9",
+      "check": "item count",
+      "status": "PASS",
+      "severity": "info",
+      "message": "Field 'goals' has 3 items",
+      "file": "extra_fields.json"
+    },
+    {
+      "section": "section 9",
+      "check": "extra fields",
+      "status": "PASS",
+      "severity": "info",
+      "message": "No unexpected fields",
+      "file": "extra_fields.json"
+    },
+    {
+      "section": "section 9",
+      "check": "blank values",
+      "status": "PASS",
+      "severity": "info",
+      "message": "No blank values",
+      "file": "extra_fields.json"
+    },
+    {
+      "section": "section 10",
+      "check": "field",
+      "status": "PASS",
+      "severity": "info",
+      "message": "Field 'items' is present",
+      "file": "extra_fields.json"
+    },
+    {
+      "section": "section 10",
+      "check": "type",
+      "status": "PASS",
+      "severity": "info",
+      "message": "Field 'items' has type list",
+      "file": "extra_fields.json"
+    },
+    {
+      "section": "section 10",
+      "check": "item count",
+      "status": "PASS",
+      "severity": "info",
+      "message": "Field 'items' has 4 items",
+      "file": "extra_fields.json"
+    },
+    {
+      "section": "section 10",
+      "check": "extra fields",
+      "status": "PASS",
+      "severity": "info",
+      "message": "No unexpected fields",
+      "file": "extra_fields.json"
+    },
+    {
+      "section": "section 10",
+      "check": "blank values",
+      "status": "PASS",
+      "severity": "info",
+      "message": "No blank values",
+      "file": "extra_fields.json"
+    },
+    {
+      "section": "module 1",
+      "check": "topic coverage",
+      "status": "PASS",
+      "severity": "info",
+      "message": "Topic 'variables and types' is covered",
+      "file": "extra_fields.json"
+    },
+    {
+      "section": "module 1",
+      "check": "topic coverage",
+      "status": "PASS",
+      "severity": "info",
+      "message": "Topic 'strings' is covered",
+      "file": "extra_fields.json"
+    },
+    {
+      "section": "module 1",
+      "check": "topic coverage",
+      "status": "PASS",
+      "severity": "info",
+      "message": "Topic 'operators' is covered",
+      "file": "extra_fields.json"
+    },
+    {
+      "section": "module 1",
+      "check": "topic coverage",
+      "status": "PASS",
+      "severity": "info",
+      "message": "Topic 'f-strings' is covered",
+      "file": "extra_fields.json"
+    },
+    {
+      "section": "module 1",
+      "check": "topic coverage",
+      "status": "PASS",
+      "severity": "info",
+      "message": "Topic 'control flow' is covered",
+      "file": "extra_fields.json"
+    },
+    {
+      "section": "module 2",
+      "check": "topic coverage",
+      "status": "PASS",
+      "severity": "info",
+      "message": "Topic 'functions' is covered",
+      "file": "extra_fields.json"
+    },
+    {
+      "section": "module 2",
+      "check": "topic coverage",
+      "status": "PASS",
+      "severity": "info",
+      "message": "Topic 'lambda, map, filter, reduce' is covered",
+      "file": "extra_fields.json"
+    },
+    {
+      "section": "module 2",
+      "check": "topic coverage",
+      "status": "PASS",
+      "severity": "info",
+      "message": "Topic 'recursion' is covered",
+      "file": "extra_fields.json"
+    },
+    {
+      "section": "module 2",
+      "check": "topic coverage",
+      "status": "PASS",
+      "severity": "info",
+      "message": "Topic 'data structures' is covered",
+      "file": "extra_fields.json"
+    },
+    {
+      "section": "module 2",
+      "check": "topic coverage",
+      "status": "PASS",
+      "severity": "info",
+      "message": "Topic 'comprehensions' is covered",
+      "file": "extra_fields.json"
+    },
+    {
+      "section": "module 3",
+      "check": "topic coverage",
+      "status": "PASS",
+      "severity": "info",
+      "message": "Topic 'modules and packages' is covered",
+      "file": "extra_fields.json"
+    },
+    {
+      "section": "module 3",
+      "check": "topic coverage",
+      "status": "PASS",
+      "severity": "info",
+      "message": "Topic 'file handling' is covered",
+      "file": "extra_fields.json"
+    },
+    {
+      "section": "module 3",
+      "check": "topic coverage",
+      "status": "PASS",
+      "severity": "info",
+      "message": "Topic 'csv and json' is covered",
+      "file": "extra_fields.json"
+    },
+    {
+      "section": "module 3",
+      "check": "topic coverage",
+      "status": "PASS",
+      "severity": "info",
+      "message": "Topic 'str.format' is covered",
+      "file": "extra_fields.json"
+    },
+    {
+      "section": "module 3",
+      "check": "topic coverage",
+      "status": "PASS",
+      "severity": "info",
+      "message": "Topic 'pep 8' is covered",
+      "file": "extra_fields.json"
+    },
+    {
+      "section": "module 4",
+      "check": "topic coverage",
+      "status": "PASS",
+      "severity": "info",
+      "message": "Topic 'classes' is covered",
+      "file": "extra_fields.json"
+    },
+    {
+      "section": "module 4",
+      "check": "topic coverage",
+      "status": "PASS",
+      "severity": "info",
+      "message": "Topic 'class and static methods' is covered",
+      "file": "extra_fields.json"
+    },
+    {
+      "section": "module 4",
+      "check": "topic coverage",
+      "status": "PASS",
+      "severity": "info",
+      "message": "Topic 'inheritance' is covered",
+      "file": "extra_fields.json"
+    },
+    {
+      "section": "module 4",
+      "check": "topic coverage",
+      "status": "PASS",
+      "severity": "info",
+      "message": "Topic 'dunder methods' is covered",
+      "file": "extra_fields.json"
+    },
+    {
+      "section": "module 4",
+      "check": "topic coverage",
+      "status": "PASS",
+      "severity": "info",
+      "message": "Topic 'exceptions' is covered",
+      "file": "extra_fields.json"
+    },
+    {
+      "section": "module 4",
+      "check": "topic coverage",
+      "status": "PASS",
+      "severity": "info",
+      "message": "Topic 'iterators and generators' is covered",
+      "file": "extra_fields.json"
+    },
+    {
+      "section": "module 4",
+      "check": "topic coverage",
+      "status": "PASS",
+      "severity": "info",
+      "message": "Topic 'closures and decorators' is covered",
+      "file": "extra_fields.json"
+    },
+    {
+      "section": "module 5",
+      "check": "topic coverage",
+      "status": "PASS",
+      "severity": "info",
+      "message": "Topic 'concurrency' is covered",
+      "file": "extra_fields.json"
+    },
+    {
+      "section": "module 5",
+      "check": "topic coverage",
+      "status": "PASS",
+      "severity": "info",
+      "message": "Topic 'unit testing' is covered",
+      "file": "extra_fields.json"
+    },
+    {
+      "section": "module 5",
+      "check": "topic coverage",
+      "status": "PASS",
+      "severity": "info",
+      "message": "Topic 'external data source' is covered",
+      "file": "extra_fields.json"
+    },
+    {
+      "section": "module 5",
+      "check": "topic coverage",
+      "status": "PASS",
+      "severity": "info",
+      "message": "Topic 'type hints' is covered",
+      "file": "extra_fields.json"
+    },
+    {
+      "section": "module 5",
+      "check": "topic coverage",
+      "status": "PASS",
+      "severity": "info",
+      "message": "Topic 'docstrings' is covered",
+      "file": "extra_fields.json"
+    },
+    {
+      "section": "module 5",
+      "check": "topic coverage",
+      "status": "PASS",
+      "severity": "info",
+      "message": "Topic 'project structure' is covered",
+      "file": "extra_fields.json"
+    }
+  ]
+}

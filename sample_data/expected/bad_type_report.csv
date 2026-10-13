@@ -1,0 +1,106 @@
+file,section,check,status,severity,message
+bad_type.json,brief,section count,PASS,info,Brief has exactly 10 sections
+bad_type.json,section 1,heading,PASS,info,Heading is correct: 'Business Scenario'
+bad_type.json,section 2,heading,PASS,info,Heading is correct: 'Input Specification'
+bad_type.json,section 3,heading,PASS,info,Heading is correct: 'Output Specification'
+bad_type.json,section 4,heading,PASS,info,Heading is correct: 'Constraints & Assumptions'
+bad_type.json,section 5,heading,PASS,info,Heading is correct: 'Core Task'
+bad_type.json,section 6,heading,PASS,info,Heading is correct: 'Required Implementations'
+bad_type.json,section 7,heading,PASS,info,Heading is correct: 'Error Handling Requirements'
+bad_type.json,section 8,heading,PASS,info,Heading is correct: 'Testing Requirements'
+bad_type.json,section 9,heading,PASS,info,Heading is correct: 'Stretch Goals'
+bad_type.json,section 10,heading,PASS,info,Heading is correct: 'Deliverable Checklist'
+bad_type.json,section 1,field,PASS,info,Field 'role' is present
+bad_type.json,section 1,type,PASS,info,Field 'role' has type str
+bad_type.json,section 1,field,PASS,info,Field 'domain' is present
+bad_type.json,section 1,type,PASS,info,Field 'domain' has type str
+bad_type.json,section 1,field,PASS,info,Field 'problem' is present
+bad_type.json,section 1,type,PASS,info,Field 'problem' has type str
+bad_type.json,section 1,extra fields,PASS,info,No unexpected fields
+bad_type.json,section 1,blank values,PASS,info,No blank values
+bad_type.json,section 2,field,PASS,info,Field 'format' is present
+bad_type.json,section 2,type,PASS,info,Field 'format' has type str
+bad_type.json,section 2,field,PASS,info,Field 'fields' is present
+bad_type.json,section 2,type,PASS,info,Field 'fields' has type dict
+bad_type.json,section 2,extra fields,PASS,info,No unexpected fields
+bad_type.json,section 2,blank values,PASS,info,No blank values
+bad_type.json,section 3,field,PASS,info,Field 'format' is present
+bad_type.json,section 3,type,PASS,info,Field 'format' has type str
+bad_type.json,section 3,field,PASS,info,Field 'fields' is present
+bad_type.json,section 3,type,PASS,info,Field 'fields' has type dict
+bad_type.json,section 3,field,PASS,info,Field 'derivation' is present
+bad_type.json,section 3,type,PASS,info,Field 'derivation' has type str
+bad_type.json,section 3,extra fields,PASS,info,No unexpected fields
+bad_type.json,section 3,blank values,PASS,info,No blank values
+bad_type.json,section 4,field,PASS,info,Field 'assumptions' is present
+bad_type.json,section 4,type,FAIL,error,"Field 'assumptions' should be list, but got str"
+bad_type.json,section 4,extra fields,PASS,info,No unexpected fields
+bad_type.json,section 4,blank values,PASS,info,No blank values
+bad_type.json,section 5,field,PASS,info,Field 'description' is present
+bad_type.json,section 5,type,PASS,info,Field 'description' has type str
+bad_type.json,section 5,field,PASS,info,Field 'steps' is present
+bad_type.json,section 5,type,PASS,info,Field 'steps' has type list
+bad_type.json,section 5,item count,PASS,info,Field 'steps' has 8 items
+bad_type.json,section 5,extra fields,PASS,info,No unexpected fields
+bad_type.json,section 5,blank values,PASS,info,No blank values
+bad_type.json,section 6,field,PASS,info,Field 'function_based' is present
+bad_type.json,section 6,type,PASS,info,Field 'function_based' has type str
+bad_type.json,section 6,field,PASS,info,Field 'class_based' is present
+bad_type.json,section 6,type,PASS,info,Field 'class_based' has type str
+bad_type.json,section 6,field,PASS,info,Field 'comparison' is present
+bad_type.json,section 6,type,PASS,info,Field 'comparison' has type str
+bad_type.json,section 6,extra fields,PASS,info,No unexpected fields
+bad_type.json,section 6,blank values,PASS,info,No blank values
+bad_type.json,section 7,field,PASS,info,Field 'failure_cases' is present
+bad_type.json,section 7,type,PASS,info,Field 'failure_cases' has type list
+bad_type.json,section 7,item count,PASS,info,Field 'failure_cases' has 5 items
+bad_type.json,section 7,extra fields,PASS,info,No unexpected fields
+bad_type.json,section 7,blank values,PASS,info,No blank values
+bad_type.json,section 8,field,PASS,info,Field 'happy_path' is present
+bad_type.json,section 8,type,PASS,info,Field 'happy_path' has type str
+bad_type.json,section 8,field,PASS,info,Field 'edge_cases' is present
+bad_type.json,section 8,type,PASS,info,Field 'edge_cases' has type list
+bad_type.json,section 8,item count,PASS,info,Field 'edge_cases' has 2 items
+bad_type.json,section 8,field,PASS,info,Field 'failure_cases' is present
+bad_type.json,section 8,type,PASS,info,Field 'failure_cases' has type list
+bad_type.json,section 8,item count,PASS,info,Field 'failure_cases' has 3 items
+bad_type.json,section 8,extra fields,PASS,info,No unexpected fields
+bad_type.json,section 8,blank values,PASS,info,No blank values
+bad_type.json,section 9,field,PASS,info,Field 'goals' is present
+bad_type.json,section 9,type,PASS,info,Field 'goals' has type list
+bad_type.json,section 9,item count,PASS,info,Field 'goals' has 3 items
+bad_type.json,section 9,extra fields,PASS,info,No unexpected fields
+bad_type.json,section 9,blank values,PASS,info,No blank values
+bad_type.json,section 10,field,PASS,info,Field 'items' is present
+bad_type.json,section 10,type,PASS,info,Field 'items' has type list
+bad_type.json,section 10,item count,PASS,info,Field 'items' has 4 items
+bad_type.json,section 10,extra fields,PASS,info,No unexpected fields
+bad_type.json,section 10,blank values,PASS,info,No blank values
+bad_type.json,module 1,topic coverage,PASS,info,Topic 'variables and types' is covered
+bad_type.json,module 1,topic coverage,PASS,info,Topic 'strings' is covered
+bad_type.json,module 1,topic coverage,PASS,info,Topic 'operators' is covered
+bad_type.json,module 1,topic coverage,PASS,info,Topic 'f-strings' is covered
+bad_type.json,module 1,topic coverage,PASS,info,Topic 'control flow' is covered
+bad_type.json,module 2,topic coverage,PASS,info,Topic 'functions' is covered
+bad_type.json,module 2,topic coverage,PASS,info,"Topic 'lambda, map, filter, reduce' is covered"
+bad_type.json,module 2,topic coverage,PASS,info,Topic 'recursion' is covered
+bad_type.json,module 2,topic coverage,PASS,info,Topic 'data structures' is covered
+bad_type.json,module 2,topic coverage,PASS,info,Topic 'comprehensions' is covered
+bad_type.json,module 3,topic coverage,PASS,info,Topic 'modules and packages' is covered
+bad_type.json,module 3,topic coverage,PASS,info,Topic 'file handling' is covered
+bad_type.json,module 3,topic coverage,PASS,info,Topic 'csv and json' is covered
+bad_type.json,module 3,topic coverage,PASS,info,Topic 'str.format' is covered
+bad_type.json,module 3,topic coverage,PASS,info,Topic 'pep 8' is covered
+bad_type.json,module 4,topic coverage,PASS,info,Topic 'classes' is covered
+bad_type.json,module 4,topic coverage,PASS,info,Topic 'class and static methods' is covered
+bad_type.json,module 4,topic coverage,PASS,info,Topic 'inheritance' is covered
+bad_type.json,module 4,topic coverage,PASS,info,Topic 'dunder methods' is covered
+bad_type.json,module 4,topic coverage,PASS,info,Topic 'exceptions' is covered
+bad_type.json,module 4,topic coverage,PASS,info,Topic 'iterators and generators' is covered
+bad_type.json,module 4,topic coverage,PASS,info,Topic 'closures and decorators' is covered
+bad_type.json,module 5,topic coverage,PASS,info,Topic 'concurrency' is covered
+bad_type.json,module 5,topic coverage,PASS,info,Topic 'unit testing' is covered
+bad_type.json,module 5,topic coverage,PASS,info,Topic 'external data source' is covered
+bad_type.json,module 5,topic coverage,PASS,info,Topic 'type hints' is covered
+bad_type.json,module 5,topic coverage,PASS,info,Topic 'docstrings' is covered
+bad_type.json,module 5,topic coverage,PASS,info,Topic 'project structure' is covered

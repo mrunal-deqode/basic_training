@@ -21,9 +21,12 @@ from src.utils import (
 # How many sections a correct brief must have.
 EXPECTED_SECTION_COUNT = len(EXPECTED_HEADINGS)
 
-# The same headings in lower case, built once and reused. Used to detect
-# a heading that is correct but sitting in the wrong position.
-LOWER_HEADINGS = [heading.lower() for heading in EXPECTED_HEADINGS]
+# Each expected heading in lower case -> its 1-based position. Used to
+# detect a heading that is correct but sitting in the wrong position.
+HEADING_POSITIONS = {
+    heading.lower(): number
+    for number, heading in enumerate(EXPECTED_HEADINGS, start=1)
+}
 
 # Status flags: each one is a single bit, so they can be combined in one
 # number. "1 << 3" means "shift the 1 three places left", which gives 8.
@@ -151,11 +154,14 @@ def check_one_heading(
     elif dot and prefix.isdigit() and rest == expected:
         message = (f"Remove the number prefix: found '{actual}', "
                    f"expected '{expected}'")
+    elif cleaned and cleaned[-1] == ":" and cleaned[:-1] == expected:
+        message = (f"Remove the trailing colon: found '{actual}', "
+                   f"expected '{expected}'")
     elif cleaned.lower() == expected.lower():
         message = (f"Wrong capital letters: found '{actual}', "
                    f"expected '{expected}'")
-    elif cleaned.lower() in LOWER_HEADINGS:
-        right_position = LOWER_HEADINGS.index(cleaned.lower()) + 1
+    elif cleaned.lower() in HEADING_POSITIONS:
+        right_position = HEADING_POSITIONS[cleaned.lower()]
         message = (f"Wrong order: '{cleaned}' belongs at position "
                    f"{right_position}, not {position}")
     else:

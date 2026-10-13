@@ -354,6 +354,9 @@ class HeadingChecker(BaseChecker):
         elif self.strip_number_prefix(cleaned) == expected:
             message = (f"Remove the number prefix: found '{actual}', "
                        f"expected '{expected}'")
+        elif cleaned and cleaned[-1] == ":" and cleaned[:-1] == expected:
+            message = (f"Remove the trailing colon: found '{actual}', "
+                       f"expected '{expected}'")
         elif cleaned.lower() == expected.lower():
             message = (f"Wrong capital letters: found '{actual}', "
                        f"expected '{expected}'")
@@ -524,7 +527,9 @@ class FieldChecker(BaseChecker):
         label: str, rules: dict[str, Any], content: dict[str, Any]
     ) -> CheckResult:
         """Report fields that the blueprint does not ask for (a warning)."""
-        extra = set(content) - set(rules)
+        # extra = set(content) - set(rules)
+            # A set comprehension: names in content that the rules do not know.
+        extra = {key for key in content if key not in rules}
 
         if extra:
             names = ", ".join(sorted(extra))

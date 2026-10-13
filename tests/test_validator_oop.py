@@ -465,6 +465,8 @@ class TestHeadingChecker(unittest.TestCase):
             "output specification": "Wrong capital letters",
             "  Output Specification ": "extra spaces",
             "3. Output Specification": "number prefix",
+            "Output Specification:": "trailing colon",
+            "": "does not match",
         }
         for heading, expected_text in cases.items():
             with self.subTest(heading=heading):

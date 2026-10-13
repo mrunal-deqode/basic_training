@@ -135,6 +135,15 @@ def kitchen_sink(brief: dict[str, Any]) -> None:
     extra_field(brief)
     blank_nested_value(brief)
 
+def trailing_colon(brief: dict[str, Any]) -> None:
+    """Put a colon after section 4's heading."""
+    brief["sections"][3]["heading"] = "Constraints & Assumptions:"
+
+
+def empty_heading(brief: dict[str, Any]) -> None:
+    """Make section 1's heading an empty string."""
+    brief["sections"][0]["heading"] = ""
+
 
 # Name -> function, built from the function names themselves.
 VARIANTS = {
@@ -145,7 +154,7 @@ VARIANTS = {
         extra_spaces, number_prefix, swap_sections, missing_field,
         wrong_type, none_value, too_few_items, too_many_items,
         empty_content, extra_field, blank_nested_value, blank_list_item,
-        lose_recursion_topic, kitchen_sink,
+        lose_recursion_topic, kitchen_sink, trailing_colon, empty_heading,
     )
 }
 
