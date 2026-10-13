@@ -1,4 +1,4 @@
-"""python3 main.py [input_file] [output_dir] [--impl function] [--strict]"""
+"""python3 main.py [input_file] [output_dir] [--impl function|oop] [--strict]"""
 import logging
 import argparse
 import sys
@@ -9,6 +9,7 @@ from src.exceptions import BriefCheckerError
 from src.report import format_failure_table, format_summary, write_reports
 from src.utils import load_brief, TIMINGS
 from src.validator import validate_brief
+from src.validator_oop import validate_brief_oop
 
 EXIT_COMPLIANT = 0
 EXIT_NON_COMPLIANT = 1
@@ -17,8 +18,10 @@ EXIT_BAD_INPUT = 3
 EXIT_WRITE_ERROR = 4
 EXIT_CANCELLED = 130  
 
+# Which validator each --impl choice runs. Both have the same call shape.
 IMPLEMENTATIONS: dict[str, Callable] = {
     "function": validate_brief,
+    "oop": validate_brief_oop,
 }
 
 PROMPT = "Enter the path to a brief JSON file (or q to quit): "

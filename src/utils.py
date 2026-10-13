@@ -160,8 +160,9 @@ def load_brief(file_path: str | Path) -> Any:
     try:
         data = json.loads(text)
     except json.JSONDecodeError as error:
-        raise MalformedRowError(
-            f"invalid JSON - {error.msg} (line {error.lineno}, column {error.colno})"
+            raise MalformedRowError(
+            f"invalid JSON - {error.msg} "
+            f"(line {error.lineno}, column {error.colno})"
         ) from error
 
     if data is None or data == {} or data == []:
@@ -193,21 +194,26 @@ def check_brief_shape(data: Any) -> None:
                 raise MalformedRowError(f"the key '{key}' is missing", where)
 
         if not isinstance(entry["heading"], str):
-            raise InvalidDataTypeError(f"heading of {where}", "str", entry["heading"])
+            raise InvalidDataTypeError(
+                f"heading of {where}", "str", entry["heading"]
+            )
 
         if not isinstance(entry["content"], dict):
-            raise InvalidDataTypeError(f"content of {where}", "dict", entry["content"])
+            raise InvalidDataTypeError(
+                f"content of {where}", "dict", entry["content"]
+            )
         
 def timed(func: Callable[..., Any]) -> Callable[..., Any]:
     """Decorator: record how long each call to func takes in TIMINGS."""
 
     @functools.wraps(func)  
     def wrapper(*args: Any, **kwargs: Any) -> Any:
+        """Run func, then store how long it took."""
         start = time.perf_counter()
         try:
             return func(*args, **kwargs)
         finally:
-            TIMINGS[func.__name__] = time.perf_counter() - start
+            TIMINGS[func.__qualname__] = time.perf_counter() - start
 
     return wrapper
 
@@ -217,9 +223,10 @@ def logged(func: Callable[..., Any]) -> Callable[..., Any]:
 
     @functools.wraps(func)
     def wrapper(*args: Any, **kwargs: Any) -> Any:
-        logger.debug("Starting %s", func.__name__)
+        """Log the start and end of the call to func."""
+        logger.debug("Starting %s", func.__qualname__)
         result = func(*args, **kwargs)
-        logger.debug("Finished %s: %d rows", func.__name__, len(result))
+        logger.debug("Finished %s: %d rows", func.__qualname__, len(result))
         return result
 
     return wrapper
