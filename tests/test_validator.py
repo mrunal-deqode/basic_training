@@ -137,7 +137,7 @@ class TestStructure(unittest.TestCase):
         self.assertEqual(len(rows), 2)
         for row in rows:
             self.assertIn("Wrong order", row["message"])
-            
+
 class TestFields(unittest.TestCase):
     """Required fields, types, item counts, extras and blank values."""
 
@@ -294,7 +294,7 @@ class TestCoverage(unittest.TestCase):
         self.assertEqual(len(results), 78)
         topics = [r for r in results if r["check"] == "topic coverage"]
         self.assertEqual(topics, [])
-        
+
 class TestOptionsAndShape(unittest.TestCase):
     """validate_brief options, and briefs with a broken basic shape."""
 

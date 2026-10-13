@@ -85,7 +85,7 @@ def sample_results() -> list[CheckResult]:
             "section 4", "extra fields", "hmm", severity="warning"
         ),
     ]
-    
+
 class TestCheckResult(unittest.TestCase):
     """The result object, its factories and its special methods."""
 
@@ -303,7 +303,7 @@ class TestIteratorAndReport(unittest.TestCase):
         self.assertEqual(
             repr(report), "ComplianceReport(file_name='demo.json', results=4)"
         )
-        
+
 class TestInheritanceAndHelpers(unittest.TestCase):
     """BaseChecker, super(), class attributes, static and class methods."""
 
@@ -334,7 +334,8 @@ class TestInheritanceAndHelpers(unittest.TestCase):
 
     def test_checker_repr(self) -> None:
         """A checker's repr names its class and the sections it holds."""
-        self.assertEqual(repr(HeadingChecker([])), "HeadingChecker(sections=0)")
+        self.assertEqual(
+            repr(HeadingChecker([])), "HeadingChecker(sections=0)")
         self.assertEqual(
             repr(FieldChecker([1, 2])), "FieldChecker(sections=2)"
         )
@@ -427,8 +428,8 @@ class TestInheritanceAndHelpers(unittest.TestCase):
                 for result in results:
                     self.assertIsInstance(result, CheckResult)
                     self.assertEqual(result.status, "PASS")
-                    
-                    
+
+
 class TestHeadingChecker(unittest.TestCase):
     """Section count and headings, checked through HeadingChecker."""
 
@@ -614,7 +615,7 @@ class TestCoverageChecker(unittest.TestCase):
 
         rows = failed(CoverageChecker(self.sections).check())
         self.assertEqual(rows, [])
-        
+
 class AlwaysFailChecker(BaseChecker):
     """A checker invented for a test: it always reports one failure."""
 

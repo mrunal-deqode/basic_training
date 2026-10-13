@@ -152,7 +152,7 @@ class CheckResult:
             f"status={self.status!r}, severity={self.severity!r}, "
             f"message={self.message!r})"
         )
-        
+
 class ResultIterator:
     """A hand-written iterator: it hands out results one at a time.
 
@@ -379,10 +379,13 @@ class HeadingChecker(BaseChecker):
             try:
                 section = self.get_section(position)
             except MissingSectionError as error:
-                results.append(CheckResult.failed(label, "heading", str(error)))
-            else:
                 results.append(
-                    self.check_one_heading(position, section["heading"], expected)
+                    CheckResult.failed(label, "heading", str(error))
+                )
+            else:
+                heading = section["heading"]
+                results.append(
+                    self.check_one_heading(position, heading, expected)
                 )
 
         for position in range(expected_count + 1, len(self.sections) + 1):
@@ -396,7 +399,7 @@ class HeadingChecker(BaseChecker):
             )
 
         return results
-    
+
 class FieldChecker(BaseChecker):
     """Checks required fields, types, item counts, extras and blanks."""
 
@@ -531,7 +534,9 @@ class FieldChecker(BaseChecker):
                 f"Unexpected extra fields: {names}",
                 severity="warning",
             )
-        return CheckResult.passed(label, "extra fields", "No unexpected fields")
+        return CheckResult.passed(
+            label, "extra fields", "No unexpected fields"
+        )
 
     @classmethod
     def find_blank_values(cls, value: Any, path: str) -> list[str]:
@@ -582,7 +587,7 @@ class FieldChecker(BaseChecker):
             return CheckResult.failed(label, "blank values", message)
 
         return CheckResult.passed(label, "blank values", "No blank values")
-    
+
 class CoverageChecker(BaseChecker):
     """Checks that every Module 1-5 topic is mentioned in the brief."""
 
@@ -607,6 +612,7 @@ class CoverageChecker(BaseChecker):
         if isinstance(value, list):
             parts = [cls.collect_text(item) for item in value]
             return " ".join(parts)
+        return ""  # numbers, booleans and None hold no text
 
     def covers(self, keywords: list[str]) -> bool:
         """Return True if at least one keyword appears in the brief's text."""
@@ -624,7 +630,8 @@ class CoverageChecker(BaseChecker):
                 if self.covers(keywords):
                     results.append(
                         CheckResult.passed(
-                            label, "topic coverage", f"Topic '{topic}' is covered"
+                            label, "topic coverage",
+                            f"Topic '{topic}' is covered"
                         )
                     )
                 else:

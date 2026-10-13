@@ -20,7 +20,7 @@ logger = logging.getLogger("blueprint_checker")
 
 TIMINGS: dict[str, float] = {}
 
-# ------------------The blueprint: the 10 required sections, in order.-------------------------------
+# ---------The blueprint: the 10 required sections, in order.----------
 BLUEPRINT_RULES = {
     1: {
         "heading": "Business Scenario",
@@ -96,7 +96,7 @@ BLUEPRINT_RULES = {
 
 EXPECTED_HEADINGS = tuple(rule["heading"] for rule in BLUEPRINT_RULES.values())
 
-# -----------------The Module 1-5 curriculum checklist.-----------------------------
+# ----------The Module 1-5 curriculum checklist.---------
 MODULE_TOPICS = {
     1: {
         "variables and types": ["variable", "numeric", "boolean"],
@@ -106,8 +106,12 @@ MODULE_TOPICS = {
         "control flow": ["if/elif", "for loop", "while loop"],
     },
     2: {
-        "functions": ["default argument", "keyword argument", "*args", "**kwargs"],
-        "lambda, map, filter, reduce": ["lambda", "map()", "filter()", "reduce"],
+        "functions": [
+            "default argument", "keyword argument", "*args", "**kwargs",
+        ],
+        "lambda, map, filter, reduce": [
+            "lambda", "map()", "filter()", "reduce",
+        ],
         "recursion": ["recursion", "recursive"],
         "data structures": ["tuple", "dictionar", "set operation"],
         "comprehensions": ["comprehension"],
@@ -142,8 +146,20 @@ MODULE_TOPICS = {
 
 
 def load_brief(file_path: str | Path) -> Any:
-    """Read a brief file and return JSON content. file_path contain path of json file."""
-    path = Path(file_path)  
+    """Read a brief file and return its parsed JSON content.
+
+    Args:
+        file_path: Path to the JSON file, as text or as a Path object.
+
+    Returns:
+        The parsed JSON data (normally a dictionary).
+
+    Raises:
+        MissingFileError: If the file does not exist.
+        EmptyInputError: If the file has no content.
+        MalformedRowError: If the file is not valid UTF-8 or valid JSON.
+    """
+    path = Path(file_path)
 
     if not path.is_file():
         raise MissingFileError(str(path))
@@ -202,11 +218,11 @@ def check_brief_shape(data: Any) -> None:
             raise InvalidDataTypeError(
                 f"content of {where}", "dict", entry["content"]
             )
-        
+
 def timed(func: Callable[..., Any]) -> Callable[..., Any]:
     """Decorator: record how long each call to func takes in TIMINGS."""
 
-    @functools.wraps(func)  
+    @functools.wraps(func)
     def wrapper(*args: Any, **kwargs: Any) -> Any:
         """Run func, then store how long it took."""
         start = time.perf_counter()
